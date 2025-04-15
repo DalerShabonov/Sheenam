@@ -20,6 +20,5 @@ namespace Sheenam.Api.Brokers.Storages
 
             return guestEntityEntry.Entity;
         }
-
     }
 }
