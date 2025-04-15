@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using Xeptions;
+﻿using Xeptions;
 
 namespace Sheenam.Api.Services.Foundations.Guests.Exceptions 
 {
