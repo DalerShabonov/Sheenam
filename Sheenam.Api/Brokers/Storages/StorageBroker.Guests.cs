@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Sheenam.Api.Models.Foundations.Guests;
+using Sheenam.Api.Services.Foundations.Guests.Exceptions;
 using System.Threading.Tasks;
 
 namespace Sheenam.Api.Brokers.Storages
@@ -19,6 +20,5 @@ namespace Sheenam.Api.Brokers.Storages
 
             return guestEntityEntry.Entity;
         }
-
     }
 }
