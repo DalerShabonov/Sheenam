@@ -1,9 +1,7 @@
 ﻿using Xunit;
-using System.Threading.Tasks;
 using Sheenam.Api.Models.Foundations.Guests;
-using Sheenam.Api.Services.Foundations.Guests.Exceptions;
 using Moq;
-using Xunit.Sdk;
+using Sheenam.Api.Models.Foundations.Guests.Exceptions;
 
 namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
 {
