@@ -26,8 +26,7 @@ namespace Sheenam.Api
 
             services.AddDbContext<StorageBroker>();
             services.AddControllers();
-            services.AddTransient<IStorageBroker, StorageBroker>();
-            services.AddTransient<ILoggingBroker, LoggingBroker>();
+            AddBrokers(services);
 
             services.AddSwaggerGen(options =>
             {
@@ -59,6 +58,12 @@ namespace Sheenam.Api
 
             app.UseEndpoints(endpoints =>
                 endpoints.MapControllers());
+        }
+
+        private static void AddBrokers(IServiceCollection services)
+        {
+            services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
         }
     }
 }
