@@ -1,6 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using EFxceptions.Models.Exceptions;
+using Microsoft.Data.SqlClient;
 using Sheenam.Api.Models.Foundations.Guests;
 using Sheenam.Api.Models.Foundations.Guests.Exceptions;
+using System;
 using System.Threading.Tasks;
 using Xeptions;
 
@@ -18,7 +20,7 @@ namespace Sheenam.Api.Services.Foundations.Guests
             }
             catch (NullGuestException nullGuestException)
             {
-                
+
                 throw CreateAndLogValidationException(nullGuestException);
             }
             catch (InvalidGuestException invalidGuestException)
@@ -29,7 +31,14 @@ namespace Sheenam.Api.Services.Foundations.Guests
             {
                 var failedGuestStorageException = new FailedGuestStorageException(sqlException);
                 throw CreateAndLogCriticalDependencyException(failedGuestStorageException);
-            }  
+            }
+            catch (DuplicateKeyException duplicateKeyException)
+            {
+                var alreadyExistsGuestException =
+                    new AlreadyExistsGuestException(duplicateKeyException);
+
+                throw CreateAndLogDependencyValidationException(alreadyExistsGuestException);
+            }
         }
 
         private GuestValidationException CreateAndLogValidationException(Xeption exception)
@@ -48,6 +57,17 @@ namespace Sheenam.Api.Services.Foundations.Guests
             this.loggingBroker.LogCritical(guestDependencyException);
 
             return guestDependencyException;
+        }
+
+        private GuestDependencyValidationException CreateAndLogDependencyValidationException( 
+            Xeption exception)
+        {
+            var guestDependencyValidationException =
+                new GuestDependencyValidationException(exception);
+
+            this.loggingBroker.LogError(guestDependencyValidationException);
+
+            return guestDependencyValidationException;
         }
     }
 }
