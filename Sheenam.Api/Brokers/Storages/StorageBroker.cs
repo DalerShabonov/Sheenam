@@ -8,7 +8,7 @@ namespace Sheenam.Api.Brokers.Storages
     {
         private readonly IConfiguration configuration;
 
-        public StorageBroker(IConfiguration configuration)  
+        public StorageBroker(IConfiguration configuration)
         {
             this.configuration = configuration;
             this.Database.Migrate();
@@ -16,13 +16,13 @@ namespace Sheenam.Api.Brokers.Storages
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = 
+            string connectionString =
                 this.configuration.GetConnectionString(name: "DefaultConnection");
 
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public override void Dispose() 
+        public override void Dispose()
         {
         }
     }

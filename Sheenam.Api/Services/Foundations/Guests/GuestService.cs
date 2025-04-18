@@ -1,8 +1,6 @@
 ﻿using Sheenam.Api.Brokers.Loggings;
 using Sheenam.Api.Brokers.Storages;
 using Sheenam.Api.Models.Foundations.Guests;
-using Sheenam.Api.Models.Foundations.Guests.Exceptions;
-using System;
 using System.Threading.Tasks;
 
 namespace Sheenam.Api.Services.Foundations.Guests

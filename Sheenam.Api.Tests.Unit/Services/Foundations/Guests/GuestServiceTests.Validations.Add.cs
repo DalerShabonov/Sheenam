@@ -1,7 +1,7 @@
-﻿using Xunit;
+﻿using Moq;
 using Sheenam.Api.Models.Foundations.Guests;
-using Moq;
 using Sheenam.Api.Models.Foundations.Guests.Exceptions;
+using Xunit;
 
 namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
 {

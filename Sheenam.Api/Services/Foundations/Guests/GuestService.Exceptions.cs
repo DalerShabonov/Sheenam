@@ -46,7 +46,7 @@ namespace Sheenam.Api.Services.Foundations.Guests
 
                 throw CreateAndLogServiceException(failedGuestServiceException);
             }
-            
+
         }
 
         private GuestValidationException CreateAndLogValidationException(Xeption exception)
@@ -67,7 +67,7 @@ namespace Sheenam.Api.Services.Foundations.Guests
             return guestDependencyException;
         }
 
-        private GuestDependencyValidationException CreateAndLogDependencyValidationException( 
+        private GuestDependencyValidationException CreateAndLogDependencyValidationException(
             Xeption exception)
         {
             var guestDependencyValidationException =
@@ -83,7 +83,7 @@ namespace Sheenam.Api.Services.Foundations.Guests
             var guestServiceException = new GuestServiceException(exception);
 
             this.loggingBroker.LogError(guestServiceException);
-            
+
             return guestServiceException;
         }
     }
