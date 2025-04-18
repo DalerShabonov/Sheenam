@@ -18,7 +18,7 @@ namespace Sheenam.Api.Services.Foundations.Guests
                 (Rule: IsInvalid(guest.Email), Parameter: nameof(Guest.Email)),
                 (Rule: IsInvalid(guest.Address), Parameter: nameof(Guest.Address)),
                 (Rule: IsInvalid(guest.Gender), Parameter: nameof(Guest.Gender)));
-        }   
+        }
 
         private void ValidateGuestNotNull(Guest guest)
         {
@@ -52,7 +52,7 @@ namespace Sheenam.Api.Services.Foundations.Guests
             Message = "Value is invalid"
         };
 
-        private static void Validate(params(dynamic Rule, string Parameter)[] validations)
+        private static void Validate(params (dynamic Rule, string Parameter)[] validations)
         {
             var invalidGuestException = new InvalidGuestException();
 

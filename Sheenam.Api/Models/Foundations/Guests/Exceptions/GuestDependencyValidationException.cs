@@ -1,5 +1,4 @@
-﻿using System;
-using Xeptions;
+﻿using Xeptions;
 
 namespace Sheenam.Api.Models.Foundations.Guests.Exceptions
 {
@@ -9,6 +8,6 @@ namespace Sheenam.Api.Models.Foundations.Guests.Exceptions
         : base(
             message: "Guest dependency validation error occurred, fix the errors and try again",
             innerException)
-        {}
+        { }
     }
 }

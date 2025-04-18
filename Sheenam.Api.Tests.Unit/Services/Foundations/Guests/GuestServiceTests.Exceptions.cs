@@ -16,13 +16,13 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
             Guest someGuest = CreateRandomGuest();
             SqlException sqlException = GetSqlError();
             var failedGuestStorageException = new FailedGuestStorageException(sqlException);
-            
-            var expectedGuestDependencyException = 
+
+            var expectedGuestDependencyException =
                 new GuestDependencyException(failedGuestStorageException);
 
             this.storageBrokerMock.Setup(broker =>
                 broker.InsertGuestAsync(someGuest))
-                    .ThrowsAsync(sqlException); 
+                    .ThrowsAsync(sqlException);
 
             //when
             ValueTask<Guest> addGuestTask =
@@ -75,7 +75,7 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertGuestAsync(someGuest),
-                    Times.Once);    
+                    Times.Once);
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
@@ -83,7 +83,7 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
                         Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
-            this.loggingBrokerMock.VerifyNoOtherCalls();    
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -92,8 +92,8 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
             //given
             Guest someGuest = CreateRandomGuest();
             var serviceException = new Exception();
-            
-            var failedServiceException = 
+
+            var failedServiceException =
                 new FailedGuestServiceException(serviceException);
 
             var expectedGuestServiceException =
@@ -104,7 +104,7 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
                     .ThrowsAsync(serviceException);
 
             //when
-            ValueTask <Guest> addGuestTask =
+            ValueTask<Guest> addGuestTask =
                 this.guestService.AddGuestAsync(someGuest);
 
             //then

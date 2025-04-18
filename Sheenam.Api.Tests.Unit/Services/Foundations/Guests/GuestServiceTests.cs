@@ -16,7 +16,7 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
         private readonly Mock<IStorageBroker> storageBrokerMock;
         private readonly Mock<ILoggingBroker> loggingBrokerMock;
         private readonly IGuestService guestService;
-        
+
         public GuestServiceTests()
         {
             this.storageBrokerMock = new Mock<IStorageBroker>();
@@ -28,13 +28,13 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
         }
 
         private static Guest CreateRandomGuest() =>
-            CreateGuestFiller(date:GetRandomDateTimeOffset()).Create();
+            CreateGuestFiller(date: GetRandomDateTimeOffset()).Create();
 
         private static DateTimeOffset GetRandomDateTimeOffset() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
 
         private static int GetRandomNumber() =>
-            new IntRange(min : 2, max: 10).GetValue();
+            new IntRange(min: 2, max: 10).GetValue();
 
         private static string GetRandomString() =>
             new MnemonicString().GetValue();
@@ -46,7 +46,7 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
         {
             int randomNumber = GetRandomNumber();
 
-            while(Enum.IsDefined(typeof(T), randomNumber)is true)
+            while (Enum.IsDefined(typeof(T), randomNumber) is true)
             {
                 randomNumber = GetRandomNumber();
             }
@@ -57,14 +57,14 @@ namespace Sheenam.Api.Tests.Unit.Services.Foundations.Guests
         private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
         {
             return actualException =>
-                actualException.Message == expectedException.Message 
+                actualException.Message == expectedException.Message
                 && actualException.InnerException.Message == expectedException.InnerException.Message
-                && (actualException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data );
+                && (actualException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
 
 
         }
 
-        private static Filler <Guest> CreateGuestFiller(DateTimeOffset date)
+        private static Filler<Guest> CreateGuestFiller(DateTimeOffset date)
         {
             var filler = new Filler<Guest>();
 
